@@ -1,6 +1,12 @@
 # recap
 
-A new Flutter project.
+A minimalist design using Flutter.
+
+# Screenshots
+
+![Home screen](screenshots/home.png)
+
+![Detail screen](screenshots/detail.png)
 
 ## Getting Started
 
