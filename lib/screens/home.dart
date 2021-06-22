@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:flutter_swiper/flutter_swiper.dart';
+import 'package:recap/screens/detail.dart';
 import 'package:recap/utils/constants.dart';
 import 'package:recap/utils/data.dart';
 
@@ -75,72 +76,83 @@ class _HomeState extends State<Home> {
                     builder:
                         DotSwiperPaginationBuilder(activeSize: 20, space: 8)),
                 itemBuilder: (context, index) {
-                  return Stack(
-                    children: [
-                      Column(
-                        children: [
-                          SizedBox(
-                            height: 100,
-                          ),
-                          Card(
-                            elevation: 8,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(32)),
-                            color: Colors.white,
-                            child: Padding(
-                              padding: const EdgeInsets.all(32.0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: 100,
-                                  ),
-                                  Text(
-                                    planets[index].name,
-                                    style: TextStyle(
-                                        fontFamily: 'Avenir',
-                                        fontSize: 44,
-                                        color: primaryTextColor,
-                                        fontWeight: FontWeight.w900),
-                                    textAlign: TextAlign.left,
-                                  ),
-                                  Text(
-                                    'Solar System',
-                                    style: TextStyle(
-                                        fontFamily: 'Avenir',
-                                        fontSize: 23,
-                                        color: primaryTextColor,
-                                        fontWeight: FontWeight.w500),
-                                    textAlign: TextAlign.left,
-                                  ),
-                                  SizedBox(
-                                    height: 32,
-                                  ),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        'Know more',
-                                        style: TextStyle(
-                                            fontFamily: 'Avenir',
-                                            fontSize: 18,
-                                            color: secondaryTextColor,
-                                            fontWeight: FontWeight.w500),
-                                        textAlign: TextAlign.left,
-                                      ),
-                                      Icon(
-                                        Icons.arrow_forward,
-                                        color: secondaryTextColor,
-                                      )
-                                    ],
-                                  )
-                                ],
-                              ),
+                  return InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          PageRouteBuilder(
+                              pageBuilder: (context, a, b) =>
+                                  DetailPage(planetInfo: planets[index])));
+                    },
+                    child: Stack(
+                      children: [
+                        Column(
+                          children: [
+                            SizedBox(
+                              height: 100,
                             ),
-                          )
-                        ],
-                      ),
-                      Image.asset(planets[index].iconImage)
-                    ],
+                            Card(
+                              elevation: 8,
+                              shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(32)),
+                              color: Colors.white,
+                              child: Padding(
+                                padding: const EdgeInsets.all(32.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    SizedBox(
+                                      height: 100,
+                                    ),
+                                    Text(
+                                      planets[index].name,
+                                      style: TextStyle(
+                                          fontFamily: 'Avenir',
+                                          fontSize: 44,
+                                          color: primaryTextColor,
+                                          fontWeight: FontWeight.w900),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                    Text(
+                                      'Solar System',
+                                      style: TextStyle(
+                                          fontFamily: 'Avenir',
+                                          fontSize: 23,
+                                          color: primaryTextColor,
+                                          fontWeight: FontWeight.w500),
+                                      textAlign: TextAlign.left,
+                                    ),
+                                    SizedBox(
+                                      height: 32,
+                                    ),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          'Know more',
+                                          style: TextStyle(
+                                              fontFamily: 'Avenir',
+                                              fontSize: 18,
+                                              color: secondaryTextColor,
+                                              fontWeight: FontWeight.w500),
+                                          textAlign: TextAlign.left,
+                                        ),
+                                        Icon(
+                                          Icons.arrow_forward,
+                                          color: secondaryTextColor,
+                                        )
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
+                        Hero(
+                            tag: planets[index].position,
+                            child: Image.asset(planets[index].iconImage))
+                      ],
+                    ),
                   );
                 },
               ),
